@@ -35,5 +35,6 @@ func (p *postgresRepository) Delete(id string) error {
 }
 
 func (p *postgresRepository) Migrate() error {
+	p.db.Exec(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`)
 	return p.db.AutoMigrate(&models.Comment{})
 }
