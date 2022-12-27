@@ -12,6 +12,5 @@ COPY . ./
 RUN go build -o ./service-comment
 
 EXPOSE 4089
-ENV PORT=4089
 
 CMD [ "./service-comment" ]
