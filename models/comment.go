@@ -20,7 +20,7 @@ func CommentToProto(comment *Comment) *protobuffer.Comment {
 		ModID:     comment.ModID,
 		UserID:    comment.UserID,
 		Text:      comment.Text,
-		Create_At: timestamppb.Now(),
+		Create_At: timestamppb.New(comment.CreatedAt),
 	}
 }
 
