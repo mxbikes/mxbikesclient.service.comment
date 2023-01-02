@@ -44,7 +44,7 @@ func TestRepository_GetByModID(t *testing.T) {
 		WithArgs(modID).
 		WillReturnRows(sqlmock.
 			NewRows([]string{"ID", "ModID", "UserID", "Text"}).
-			AddRow(uuid.New().String(), modID.String(), uuid.New().String(), "Good Job!"))
+			AddRow(uuid.New().String(), modID.String(), "63b2dff9e834e550f0e50e66", "Good Job!"))
 
 	repo := NewMockRepository(db)
 
@@ -63,7 +63,7 @@ func TestRepository_Insert(t *testing.T) {
 	newId := uuid.New()
 	comment := &models.Comment{
 		ModID:  uuid.NewString(),
-		UserID: uuid.NewString(),
+		UserID: "63b2dff9e834e550f0e50e66",
 		Text:   "Looks Nice",
 	}
 
@@ -91,7 +91,7 @@ func TestRepository_Update(t *testing.T) {
 	comment := &models.Comment{
 		ID:     uuid.NewString(),
 		ModID:  uuid.NewString(),
-		UserID: uuid.NewString(),
+		UserID: "63b2dff9e834e550f0e50e66",
 		Text:   "dLooks Nice",
 	}
 
