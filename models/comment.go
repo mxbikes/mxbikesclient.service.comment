@@ -10,7 +10,7 @@ type Comment struct {
 	gorm.Model
 	ID     string `gorm:"type:uuid;default:uuid_generate_v4()" validate:"omitempty,uuid4"`
 	ModID  string `gorm:"type:uuid;" validate:"uuid4,required"`
-	UserID string `gorm:"type:varchar(50);not null;default:null" validate:"uuid4,required"`
+	UserID string `gorm:"type:varchar(50);not null;default:null" validate:"required"`
 	Text   string `gorm:"type:varchar(250);not null;default:null" validate:"min=1,max=250"`
 }
 

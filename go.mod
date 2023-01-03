@@ -27,7 +27,7 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // indirect
-	github.com/mxbikes/protobuf v0.0.0-20230102172553-61cae9d10bc6 // indirect
+	github.com/mxbikes/protobuf v0.0.0-20230102204926-bd3892e8291e // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.24.2 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
