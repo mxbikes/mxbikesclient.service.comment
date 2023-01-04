@@ -1,9 +1,11 @@
 package main
 
 import (
+	"log"
 	"net"
 	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/mxbikes/mxbikesclient.service.comment/handler"
 	"github.com/mxbikes/mxbikesclient.service.comment/repository"
 	protobuffer "github.com/mxbikes/protobuf/comment"
@@ -16,9 +18,9 @@ import (
 )
 
 var (
-	logLevel    = GetEnv("LOG_LEVEL", "info")
-	port        = GetEnv("PORT", ":4089")
-	postgresUrl = GetEnv("POSTGRES_URI", "host=host.docker.internal port=5432 user=postgres password=password sslmode=disable timezone=UTC connect_timeout=5")
+	logLevel    = getEnv("LOG_LEVEL")
+	port        = getEnv("PORT")
+	postgresUrl = getEnv("POSTGRES_URI")
 )
 
 func main() {
@@ -65,4 +67,13 @@ func GetEnv(key, fallback string) string {
 		return value
 	}
 	return fallback
+}
+
+func getEnv(key string) string {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	return os.Getenv(key)
 }
