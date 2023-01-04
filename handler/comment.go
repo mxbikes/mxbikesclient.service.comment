@@ -20,6 +20,8 @@ type Mod struct {
 	validate   *validator.Validate
 }
 
+const log_withID = "mod with id: {%s} "
+
 // Return a new handler
 func New(postgres repository.ModRepository, logger logrus.Logger) *Mod {
 	return &Mod{repository: postgres, validate: validator.New(), logger: logger}
@@ -39,7 +41,7 @@ func (e *Mod) GetCommentByModID(ctx context.Context, req *protobuffer.GetComment
 		return nil, err
 	}
 
-	e.logger.WithFields(logrus.Fields{"prefix": "SERVICE.Comment_GetCommentByModID"}).Infof("mod with id: {%s} ", req.ModID)
+	e.logger.WithFields(logrus.Fields{"prefix": "SERVICE.Comment_GetCommentByModID"}).Infof(log_withID, req.ModID)
 
 	return &protobuffer.GetCommentByModIDResponse{Comments: models.CommentsToProto(comments)}, nil
 }
@@ -65,7 +67,7 @@ func (e *Mod) UpdateComment(ctx context.Context, req *protobuffer.UpdateCommentR
 		return nil, err
 	}
 
-	e.logger.WithFields(logrus.Fields{"prefix": "SERVICE.Comment_UpdateComment"}).Infof("mod with id: {%s} ", comment.ModID)
+	e.logger.WithFields(logrus.Fields{"prefix": "SERVICE.Comment_UpdateComment"}).Infof(log_withID, comment.ModID)
 
 	return &protobuffer.UpdateCommentResponse{}, nil
 }
@@ -83,7 +85,7 @@ func (e *Mod) DeleteComment(ctx context.Context, req *protobuffer.DeleteCommentR
 		return nil, err
 	}
 
-	e.logger.WithFields(logrus.Fields{"prefix": "SERVICE.Comment_DeleteComment"}).Infof("mod with id: {%s} ", req.ID)
+	e.logger.WithFields(logrus.Fields{"prefix": "SERVICE.Comment_DeleteComment"}).Infof(log_withID, req.ID)
 
 	return &protobuffer.DeleteCommentResponse{}, nil
 }
@@ -108,7 +110,7 @@ func (e *Mod) CreateComment(ctx context.Context, req *protobuffer.CreateCommentR
 		return nil, err
 	}
 
-	e.logger.WithFields(logrus.Fields{"prefix": "SERVICE.Comment_CreateComment"}).Infof("mod with id: {%s} ", comment.ID)
+	e.logger.WithFields(logrus.Fields{"prefix": "SERVICE.Comment_CreateComment"}).Infof(log_withID, comment.ID)
 
 	return &protobuffer.CreateCommentResponse{ID: comment.ID}, nil
 }
