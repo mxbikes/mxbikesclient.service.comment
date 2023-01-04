@@ -20,10 +20,12 @@ import (
 	"gorm.io/gorm"
 )
 
+const log_failedConn = "an error '%s' was not expected when opening a stub database connection"
+
 func NewMock() (*sql.DB, sqlmock.Sqlmock) {
 	db, mock, err := sqlmock.New()
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	return db, mock
@@ -35,7 +37,7 @@ func TestGetCommentByModID_EmptyUUID(t *testing.T) {
 	db, _ := NewMock()
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -54,7 +56,7 @@ func TestGetCommentByModID_WrongUUID(t *testing.T) {
 	db, _ := NewMock()
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -81,7 +83,7 @@ func TestGetCommentByModID(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -109,7 +111,7 @@ func TestUpdateComment_ValidationUuidFailed(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -136,7 +138,7 @@ func TestUpdateComment_ValidationTextExceedMaxFailed(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -163,7 +165,7 @@ func TestUpdateComment_ValidationTextExceedMinFailed(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -196,7 +198,7 @@ func TestUpdateComment(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -225,7 +227,7 @@ func TestDeleteComment(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -251,7 +253,7 @@ func TestCreateComment_ValidationUuidFailed(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -277,7 +279,7 @@ func TestCreateComment_ValidationTextExceedMaxFailed(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -303,7 +305,7 @@ func TestCreateComment_ValidationTextExceedMinFailed(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
@@ -336,7 +338,7 @@ func TestCreateComment(t *testing.T) {
 
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+		log.Fatalf(log_failedConn, err)
 	}
 
 	repo := repository.NewRepository(gdb)
