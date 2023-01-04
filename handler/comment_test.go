@@ -51,7 +51,7 @@ func TestGetCommentByModID_EmptyUUID(t *testing.T) {
 }
 
 // will test get comment by modId empty uuid
-func TestGetCommentByModID_WrongUUID(t *testing.T) {
+func TestGetCommentByModIDWrongUUID(t *testing.T) {
 	// Arrange
 	db, _ := NewMock()
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
@@ -98,7 +98,7 @@ func TestGetCommentByModID(t *testing.T) {
 }
 
 // will test update comment with wrong uuid
-func TestUpdateComment_ValidationUuidFailed(t *testing.T) {
+func TestUpdateCommentValidationUuidFailed(t *testing.T) {
 	// Arrange
 	request := &protobuffer.UpdateCommentRequest{
 		ID:     "I am not a uuid",
@@ -125,7 +125,7 @@ func TestUpdateComment_ValidationUuidFailed(t *testing.T) {
 }
 
 // will test update comment with max text
-func TestUpdateComment_ValidationTextExceedMaxFailed(t *testing.T) {
+func TestUpdateCommentValidationTextExceedMaxFailed(t *testing.T) {
 	// Arrange
 	request := &protobuffer.UpdateCommentRequest{
 		ID:     uuid.NewString(),
@@ -152,7 +152,7 @@ func TestUpdateComment_ValidationTextExceedMaxFailed(t *testing.T) {
 }
 
 // will test update comment with min text
-func TestUpdateComment_ValidationTextExceedMinFailed(t *testing.T) {
+func TestUpdateCommentValidationTextExceedMinFailed(t *testing.T) {
 	// Arrange
 	request := &protobuffer.UpdateCommentRequest{
 		ID:     uuid.NewString(),
@@ -241,7 +241,7 @@ func TestDeleteComment(t *testing.T) {
 }
 
 // will test create comment with wrong uuid
-func TestCreateComment_ValidationUuidFailed(t *testing.T) {
+func TestCreateCommentValidationUuidFailed(t *testing.T) {
 	// Arrange
 	request := &protobuffer.CreateCommentRequest{
 		ModID:  "I am not a uuid",
@@ -267,7 +267,7 @@ func TestCreateComment_ValidationUuidFailed(t *testing.T) {
 }
 
 // will test update comment with max text
-func TestCreateComment_ValidationTextExceedMaxFailed(t *testing.T) {
+func TestCreateCommentValidationTextExceedMaxFailed(t *testing.T) {
 	// Arrange
 	request := &protobuffer.CreateCommentRequest{
 		ModID:  uuid.NewString(),
@@ -293,7 +293,7 @@ func TestCreateComment_ValidationTextExceedMaxFailed(t *testing.T) {
 }
 
 // will test update comment with min text
-func TestCreateComment_ValidationTextExceedMinFailed(t *testing.T) {
+func TestCreateCommentValidationTextExceedMinFailed(t *testing.T) {
 	// Arrange
 	request := &protobuffer.CreateCommentRequest{
 		ModID:  uuid.NewString(),

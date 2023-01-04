@@ -35,7 +35,7 @@ func NewMockRepository(db gorm.ConnPool) *postgresRepository {
 }
 
 // will test get by mod id
-func TestRepository_GetByModID(t *testing.T) {
+func TestRepositoryGetByModID(t *testing.T) {
 	// Arrange
 	var modID = uuid.New()
 
@@ -58,7 +58,7 @@ func TestRepository_GetByModID(t *testing.T) {
 }
 
 // will test insert comment
-func TestRepository_Insert(t *testing.T) {
+func TestRepositoryInsert(t *testing.T) {
 	// Arrange
 	newId := uuid.New()
 	comment := &models.Comment{
@@ -86,7 +86,7 @@ func TestRepository_Insert(t *testing.T) {
 }
 
 // will test update comment
-func TestRepository_Update(t *testing.T) {
+func TestRepositoryUpdate(t *testing.T) {
 	// Arrange
 	comment := &models.Comment{
 		ID:     uuid.NewString(),
