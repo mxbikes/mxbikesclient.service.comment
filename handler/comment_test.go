@@ -32,7 +32,7 @@ func NewMock() (*sql.DB, sqlmock.Sqlmock) {
 }
 
 // will test get comment by modId empty uuid
-func TestGetCommentByModID_EmptyUUID(t *testing.T) {
+func TestGetCommentByModIDEmptyUUID(t *testing.T) {
 	// Arrange
 	db, _ := NewMock()
 	gdb, err := gorm.Open(postgres.New(postgres.Config{Conn: db}), &gorm.Config{})
