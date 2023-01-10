@@ -21,6 +21,7 @@ var (
 	logLevel    = getEnv("LOG_LEVEL")
 	port        = getEnv("PORT")
 	postgresUrl = getEnv("POSTGRES_URI")
+	serviceName = getEnv("SERVICE_NAME")
 )
 
 func main() {
@@ -47,7 +48,7 @@ func main() {
 	// Create a tcp listener
 	listener, err := net.Listen("tcp", port)
 	if err != nil {
-		logger.WithFields(logrus.Fields{"prefix": "SERVICE.MOD"}).Fatalf("failed to listen: %v", err)
+		logger.WithFields(logrus.Fields{"prefix": serviceName}).Fatalf("failed to listen: %v", err)
 	}
 
 	grpcServer := grpc.NewServer()
@@ -56,9 +57,9 @@ func main() {
 	reflection.Register(grpcServer)
 
 	// Start grpc server on listener
-	logger.WithFields(logrus.Fields{"prefix": "SERVICE.MOD"}).Infof("is listening on Grpc PORT: {%v}", listener.Addr())
+	logger.WithFields(logrus.Fields{"prefix": serviceName}).Infof("is listening on Grpc PORT: {%v}", listener.Addr())
 	if err := grpcServer.Serve(listener); err != nil {
-		logger.WithFields(logrus.Fields{"prefix": "SERVICE.MOD"}).Fatalf("failed to serve: %v", err)
+		logger.WithFields(logrus.Fields{"prefix": serviceName}).Fatalf("failed to serve: %v", err)
 	}
 }
 

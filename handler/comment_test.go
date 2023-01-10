@@ -63,7 +63,7 @@ func TestGetCommentByModIDWrongUUID(t *testing.T) {
 	handler := New(repo, *logrus.New())
 
 	// Act
-	_, err = handler.GetCommentByModID(context.Background(), &protobuffer.GetCommentByModIDRequest{ModID: "I am not a uuid"})
+	_, err = handler.GetCommentByModID(context.Background(), &protobuffer.GetCommentByModIDRequest{ModID: "123"})
 
 	// Assert
 	assert.Error(t, err, "rpc error: code = Internal desc = Error request value ID, is not a valid UUID!")
@@ -101,10 +101,10 @@ func TestGetCommentByModID(t *testing.T) {
 func TestUpdateCommentValidationUuidFailed(t *testing.T) {
 	// Arrange
 	request := &protobuffer.UpdateCommentRequest{
-		ID:     "I am not a uuid",
+		ID:     "23456",
 		ModID:  uuid.NewString(),
 		UserID: uuid.NewString(),
-		Text:   "dLooks Nice",
+		Text:   "comment 3",
 	}
 
 	db, _ := NewMock()
@@ -185,7 +185,7 @@ func TestUpdateComment(t *testing.T) {
 		ID:     uuid.NewString(),
 		ModID:  uuid.NewString(),
 		UserID: uuid.NewString(),
-		Text:   "dLooks Nice",
+		Text:   "comment 4",
 	}
 
 	db, mock := NewMock()
@@ -244,9 +244,9 @@ func TestDeleteComment(t *testing.T) {
 func TestCreateCommentValidationUuidFailed(t *testing.T) {
 	// Arrange
 	request := &protobuffer.CreateCommentRequest{
-		ModID:  "I am not a uuid",
+		ModID:  "123d",
 		UserID: uuid.NewString(),
-		Text:   "dLooks Nice",
+		Text:   "comment 1",
 	}
 
 	db, _ := NewMock()
@@ -325,7 +325,7 @@ func TestCreateComment(t *testing.T) {
 	request := &protobuffer.CreateCommentRequest{
 		ModID:  uuid.NewString(),
 		UserID: uuid.NewString(),
-		Text:   "dLooks Nice",
+		Text:   "comment 2",
 	}
 
 	db, mock := NewMock()
